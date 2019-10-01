@@ -1,6 +1,15 @@
 const promisify = (fn) => {
-    // ToDo: Implement a wrapper which will transform callback based function into a promise based one.
-    return fn;
+    return (...args) => {
+        return new Promise((resolve, reject) => {
+            fn(...args, (error, result) => {
+                if (error == null) {
+                    resolve(result);
+                } else {
+                    reject(error);
+                }
+            });
+        });
+    }
 };
 
 const squareCb = (x, y, cb) => {
