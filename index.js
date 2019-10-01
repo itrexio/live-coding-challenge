@@ -1,13 +1,20 @@
-const squareCb = (x, y, cb) => {
-    setTimeout(function() {
-        if(typeof x !== 'number' || typeof y !== 'number') {
-            return cb('Unexpected Error')
-        }
-        return cb(null, x*y);
-        }, 200);
+const promisify = (fn) => {
+    // ToDo: Implement a wrapper which will transform callback based function into a promise based one.
+    return fn;
 };
 
-// TODO please write a wrapper function with the squarePromise name which should promisify squareCb
+const squareCb = (x, y, cb) => {
+    setTimeout(() => {
+        if (typeof x !== 'number' || typeof y !== 'number') {
+            return cb(`First two arguments should be numbers. Got ${ x } and ${ y } instead.`);
+        }
+
+        cb(null, x * y);
+    }, 200);
+};
+
+const squarePromise = promisify(squareCb);
+
 
 module.exports = {
     squarePromise

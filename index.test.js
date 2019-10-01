@@ -4,7 +4,6 @@ test('Resolve', () => {
     return expect(squarePromise(2, 2)).resolves.toBe(4);
 });
 
-test('Rejection' , () => {
-    return expect(squarePromise()).rejects.toMatch('Unexpected Error');
+test('Reject' , () => {
+    return expect(squarePromise('x', 'y')).rejects.toMatch('First two arguments should be numbers')
 });
-
